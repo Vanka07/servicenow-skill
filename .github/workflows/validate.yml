@@ -1,0 +1,25 @@
+name: Validate ServiceNow Skill
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate Skill Package
+        run: python3 skills/servicenow/scripts/snow_helper.py validate-skill skills/servicenow
+
+      - name: Run Smoke Tests
+        run: python3 skills/servicenow/scripts/test_snow_helper.py
