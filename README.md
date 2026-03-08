@@ -153,6 +153,10 @@ skills/servicenow/
 
 That means your upstream PR to Anthropic should mainly add the contents of [skills/servicenow](skills/servicenow), not the extra repo scaffolding around it.
 
+## Disclaimer
+
+This is a community-maintained skill and is not affiliated with or endorsed by ServiceNow.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
