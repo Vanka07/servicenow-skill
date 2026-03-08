@@ -1,11 +1,12 @@
 ---
 name: servicenow
-description: "ServiceNow platform engineering assistant for ITSM, ITOM, ITAM/SAM Pro, FSM, SPM, HRSD, CSM, Vulnerability Response, Security Incident Response, IRM/GRC, CSDM/CMDB governance, IntegrationHub, Workspaces, Virtual Agent, App Engine, scripting, testing, and performance. Use when users ask for GlideRecord, Business Rules, Flow Designer, Service Portal, UI Builder, catalog items, discovery, update sets, vulnerability triage, security incidents, software entitlements, service mapping, or ServiceNow architecture. Triggers on ServiceNow, SNOW, GlideRecord, CMDB, MID Server, vulnerable item, security incident, software model, work order, asset, update set, and Service Portal. Do not use for non-ServiceNow JavaScript."
+description: "ServiceNow platform engineering assistant. Use when the task is ServiceNow or SNOW development and architecture involving GlideRecord, Business Rules, Flow Designer, Service Portal, UI Builder, CMDB, MID Server, update sets, ServiceNow APIs, ITSM, ITOM, ITAM/SAM, FSM, SPM, SecOps, IntegrationHub, vulnerabilities, security incidents, assets, work orders, or service modeling. Do not use for non-ServiceNow JavaScript."
 license: MIT
+allowed-tools: "Read Grep Glob Bash(python3:*)"
 compatibility: "Works in Claude.ai, Claude Code, and API. Bundled CLI helper requires Python 3.8+."
 metadata:
   author: "Jamiu Awoke"
-  version: "3.1.0"
+  version: "3.1.2"
   category: "enterprise-development"
   tags: "servicenow, itsm, itom, itam, fsm, spm, secops, gliderecord, flow-designer, service-portal, now-experience"
 ---
@@ -96,6 +97,36 @@ Before responding:
 - Record Producers and inbound actions should usually populate `current` and let the platform handle persistence rather than forcing extra updates.
 - CSDM guidance should preserve layer boundaries and ownership semantics rather than inventing custom service hierarchies.
 - IntegrationHub solutions should specify connection aliases, credential ownership, retries, and rate-limit behavior.
+
+### Fast patterns
+
+Use these without loading a reference file when the request is simple and clearly matches the pattern.
+
+#### Safe GlideRecord query
+
+```javascript
+var gr = new GlideRecord('incident');
+gr.addActiveQuery();
+gr.addQuery('priority', '1');
+gr.setLimit(50);
+gr.query();
+
+while (gr.next()) {
+    gs.info(gr.getValue('number') + ' ' + gr.getValue('short_description'));
+}
+```
+
+#### Scoped-safe single-record lookup
+
+```javascript
+var user = new GlideRecord('sys_user');
+if (!user.get(userSysId)) {
+    gs.addErrorMessage('User not found');
+    return;
+}
+
+gs.info(user.getValue('email'));
+```
 
 ## CLI Helper
 
