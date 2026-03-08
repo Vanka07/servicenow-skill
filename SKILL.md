@@ -2,11 +2,10 @@
 name: servicenow
 description: "ServiceNow platform engineering assistant. Use when the task is ServiceNow or SNOW development and architecture involving GlideRecord, Business Rules, Flow Designer, Service Portal, UI Builder, CMDB, MID Server, update sets, ServiceNow APIs, ITSM, ITOM, ITAM/SAM, FSM, SPM, SecOps, IntegrationHub, vulnerabilities, security incidents, assets, work orders, or service modeling. Do not use for non-ServiceNow JavaScript."
 license: MIT
-allowed-tools: "Read Grep Glob Bash(python3:*)"
 compatibility: "Works in Claude.ai, Claude Code, and API. Bundled CLI helper requires Python 3.8+."
 metadata:
   author: "Jamiu Awoke"
-  version: "3.1.2"
+  version: "1.0.0"
   category: "enterprise-development"
   tags: "servicenow, itsm, itom, itam, fsm, spm, secops, gliderecord, flow-designer, service-portal, now-experience"
 ---
